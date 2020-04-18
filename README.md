@@ -19,4 +19,11 @@ with use of fortek SSR or home made ssr using MOC3043 isolator and bta40600b tri
 if it steps into the  3 SSR again when  the relay is activated it will turn on the next relay on the 5th cycle  and  will do so until all relays are on  as long as it is in SSR3  firing position. then once all the relays are exahusted  it will continue on using the final ssr..
 
 
+
+![daughter shield for emontx shield ](https://github.com/krywenko/energy-monitor-and-diverter-espeasy/blob/master/energydivertershield.png)
+
+
+![movie of data sent to the espeasy firmware](https://raw.githubusercontent.com/krywenko/energy-monitor-and-diverter-espeasy/master/simplescreenrecorder-111.mp4)
+
+
  
