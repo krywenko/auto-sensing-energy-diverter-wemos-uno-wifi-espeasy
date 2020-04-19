@@ -31,4 +31,8 @@ you can control up to 7 diversion .  i find you get the best results using small
 
 
  
-more info here -- https://community.openenergymonitor.org/t/cascading-diversion-with-espeasy-wemosr3-and-emontx-shield/13689/
+more info here -- https://community.openenergymonitor.org/t/auto-hertz-energy-monitor-and-diversion-with-howto-instructions/
+
+or
+
+https://community.openenergymonitor.org/t/cascading-diversion-with-espeasy-wemosr3-and-emontx-shield/13689/
