@@ -8,11 +8,12 @@ LiquidCrystal_I2C lcd(0x3f,20,4);  // set the LCD address to 0x27 for a 16 chars
 #include <PWM.h>
 
 //###### Adjustable settings ####### 
-const int relay1=7;
+const int relay1=7;  //relay pins
 const int relay2=8;
 const int relay3=12;
 const int relay4=13; 
-int r1=0;
+const int DIS = 100 ; // what pwm pulse on the first SSR to be reached befor shutting down relays 1-254
+
 
 int upperRANGE = 15; // the range in which it will not search for better output 
 int lowerRANGE = -15;
@@ -41,6 +42,7 @@ const int ssr=0;            // 0= zerocrossing 1 = phase angle  currently only s
 const int AVG=5;
 
  //#### Non - adjustable 
+ int r1=0;
  int power1=0;
  int power2=0;
  int power3=0;
@@ -182,7 +184,7 @@ Serial.println(FREQ);
   analogWrite(pulse4, 0 );  //Enable  if you wish to cascade on  4 ssr /disable  pulse other below
 pinMode(relay1, OUTPUT);pinMode(relay2, OUTPUT);pinMode(relay3, OUTPUT);pinMode(relay4, OUTPUT);
 digitalWrite(relay1, LOW);digitalWrite(relay2, LOW);digitalWrite(relay3, LOW);digitalWrite(relay4, LOW);
-
+r1=0;
 
 
    DIVS= 1 ;           // pwm step
@@ -568,18 +570,22 @@ if ( stat == 0){
   }
   percent = ((DIVERT)/DIVS);
   Serial.print("TaskValueSet,2,1,"); Serial.println(percent);
-
+if ( DIVERT <= DIS){
   if ( count3 >= AVG){
-  if (r1 ==1){ digitalWrite(relay1, LOW); r1=0;}
+  if (r1 ==1){ digitalWrite(relay1, LOW); r1=0;}  
   if (r1==2){ digitalWrite(relay2, LOW); r1=1;}
   if (r1 ==3){ digitalWrite(relay3, LOW); r1=2;}
   if (r1 ==4){ digitalWrite(relay4, LOW); r1=3;}
+  }
+}
+  
   //avg_ios=avg_ios+percent;
   //if ( count3 >= AVG){
   //avg_ios= avg_ios/AVG;
- // Serial.print("TaskValueSet,2,1,"); Serial.println(avg_ios);  // percent --  Diverter Percentage 
-  }
+ // Serial.print("TaskValueSet,2,1,"); Serial.println(avg_ios);  // percent --  Diverter Percentage  
+ // }
 }
+
 if ( stat == 1){
    while((millis()-start)<200 && analogRead(aIn)>512  );//wait for positive half period to expire
    while((millis()-start)<200 && analogRead(aIn)<512 );//wait for negative half period to expire
@@ -598,6 +604,7 @@ if ( stat == 1){
  Serial.print("TaskValueSet,2,1,"); Serial.println(percent);
  // avg_ios=avg_ios+percent;
  // if ( count3 >= AVG){
+ //if (r1 ==0){ digitalWrite(relay1, HIGH); r1=1;}   if you would like relay1 to come on sooner 
  // avg_ios= avg_ios/AVG;
  // Serial.print("TaskValueSet,2,1,"); Serial.println(avg_ios);  // percent --  Diverter Percentage 
  // }
