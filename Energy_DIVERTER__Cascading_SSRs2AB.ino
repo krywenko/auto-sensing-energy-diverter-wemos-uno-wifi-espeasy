@@ -1,6 +1,6 @@
 #define FILTERSETTLETIME 5000 //  Time (ms) to allow the filters to settle before sending data  
 #include "EmonLib.h"
-EnergyMonitor ct1,ct2,ct3, ct4;   // Create  instances for each CT channel
+EnergyMonitor ct1,ct2,ct3,ct4;   // Create  instances for each CT channel
 
 #include <Wire.h> 
 #include <LiquidCrystal_I2C.h>
@@ -12,19 +12,20 @@ const int relay1=7;  //relay pins
 const int relay2=8;
 const int relay3=12;
 const int relay4=13; 
-const int DIS = 100 ; // what pwm pulse on the first SSR to be reached befor shutting down relays 1-254
+const int DIS = 100 ; // what pwm pulse on the first SSR to be reached before disabling  relays 1-254
 
 
 int upperRANGE = 15; // the range in which it will not search for better output 
 int lowerRANGE = -15;
 
-int PWM =1 ;  //1=enables PWM.h  smother output 0=disable
+int PWM =1 ;  //1=enables PWM.h  smother output 0=disable uses standard adruino PWM libary
 int FRAC =4 ;  // fraction of grid Hertz ie  60hz-> 2=1/2 (30hz pwm)   4 =1/4 (15 hz pwm)
 
 const int CT1 = 0;          //  divert sensor - Set to 0 to disable if using  optional  diaplay ( wind)
 const int CT2 = 1;         // Inverter sensor - Set to 0 to disable 
 const int CT3 = 1;        //grid sensor 
 const int CT4 = 1;       // windgen  sensor - Set to 0 to disable  disable if using diverter display
+const int CT5 = 0;       //  if not using LCD screen this is the  4th CT
 const int LCD = 0;             // 1=enable 0=disable
 float element = 3000; //wattage of  element  for diversion -  make bigger  then then what you have to decrease  buuble search sensitivity
 const int SSR4 =1;          // 1=  4 ssr and disables static,  0=  3 SSR & 1 static ( disable PWM.h)
@@ -46,6 +47,7 @@ const int AVG=5;
  int power1=0;
  int power2=0;
  int power3=0;
+ int power4=0;
  float volt=0;
  int avg_255 =0;
  int avg_ios=0;
@@ -184,7 +186,7 @@ Serial.println(FREQ);
   analogWrite(pulse4, 0 );  //Enable  if you wish to cascade on  4 ssr /disable  pulse other below
 pinMode(relay1, OUTPUT);pinMode(relay2, OUTPUT);pinMode(relay3, OUTPUT);pinMode(relay4, OUTPUT);
 digitalWrite(relay1, LOW);digitalWrite(relay2, LOW);digitalWrite(relay3, LOW);digitalWrite(relay4, LOW);
-r1=0;
+
 
 
    DIVS= 1 ;           // pwm step
@@ -192,15 +194,17 @@ r1=0;
 
 //###################### emontx settings  #######################
 
-  if (CT1) ct1.current(1, 60.600);                                     // Setup emonTX CT channel (ADC input, calibration)
-  if (CT2) ct2.current(2, 60.606);                                     // Calibration factor = CT ratio / burden resistance
-  if (CT3) ct3.current(3, 60.606);                                     // emonTx Shield Calibration factor = (100A / 0.05A) / 33 Ohms
-  if (CT4) ct1.current(1, 60.600); 
+  if (CT1) ct1.current(1, 60.600);  // Setup emonTX CT channel (ADC input, calibration)
+  if (CT2) ct2.current(2, 60.606);  // Calibration factor = CT ratio / burden resistance
+  if (CT3) ct3.current(3, 60.606);  // emonTx Shield Calibration factor = (100A / 0.05A) / 33 Ohms
+  if (CT4) ct1.current(1, 60.600);  // the same as the 1st CT 
+  if (CT5) ct4.current(4, 60.600);  // the 4th CT
   
-  if (CT1) ct1.voltage(0, 136.54, 1.7);                                // ct.voltageTX(ADC input, calibration, phase_shift) - make sure to select correct calibration for AC-AC adapter  http://openenergymonitor.org/emon/modules/emontx/firmware/calibration. Default set for Ideal Power adapter                                         
-  if (CT2) ct2.voltage(0, 136.54, 1.7);                                // 268.97 for the UK adapter, 260 for the Euro and 130 for the US.
+  if (CT1) ct1.voltage(0, 136.54, 1.7);   // ct.voltageTX(ADC input, calibration, phase_shift) - make sure to select correct calibration for AC-AC adapter  http://openenergymonitor.org/emon/modules/emontx/firmware/calibration. Default set for Ideal Power adapter                                         
+  if (CT2) ct2.voltage(0, 136.54, 1.7);   // 268.97 for the UK adapter, 260 for the Euro and 130 for the US.
   if (CT3) ct3.voltage(0, 136.54, 1.7);
-  if (CT4) ct1.voltage(0, 136.54, 1.7);
+  if (CT4) ct1.voltage(0, 136.54, 1.7);   // the same as the 1st CT
+  if (CT5) ct4.voltage(0, 136.54, 1.7);   // the 4th CT
 
 
  FREQ = FREQ/FRAC;
@@ -360,6 +364,20 @@ void loop()
     cnt3=0;
     }
 
+  }
+
+    if (CT5) {
+   
+    ct4.calcVI(20,2000);                                                  // Calculate all. No.of crossings, time-out 
+    emontx.power4 = ct4.realPower;
+    
+    if (SEND > 23){ power4= (power4+emontx.power4);cnt4++;}
+    if (cnt4 >= AVG){
+      power4=(power4/AVG);
+   Serial.print("TaskValueSet,2,4,"); Serial.println(power4);
+    power4=0;
+    cnt4=0;
+    }                                 
   }
   volt= (volt+ct1.Vrms);
 
