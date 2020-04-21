@@ -13,7 +13,7 @@ const int relay2=8;
 const int relay3=12;
 const int relay4=13; 
 const int DIS = 100 ; // what pwm pulse on the first SSR to be reached before disabling  relays 1-254
-
+const int RD =1 ;  // if using PWM.h and wish to display if relays are activated on LED 4  1= enable 0= disable
 
 int upperRANGE = 15; // the range in which it will not search for better output 
 int lowerRANGE = -15;
@@ -304,7 +304,7 @@ void settingPWM( int _PIN, int _PWM)
 
 void loop() 
 {
-  
+  if ( RD == 1){ if ( r1 >0) {digitalWrite( pulse4, HIGH);}else{ digitalWrite( pulse4, LOW);}}
  if (SEND <50) SEND++;  
  count3++;
  
