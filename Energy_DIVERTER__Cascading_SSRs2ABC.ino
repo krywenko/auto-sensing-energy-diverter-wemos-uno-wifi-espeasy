@@ -26,7 +26,7 @@ const int CT2 = 1;         // Inverter sensor - Set to 0 to disable
 const int CT3 = 1;        //grid sensor 
 const int CT4 = 1;       // windgen  sensor - Set to 0 to disable  disable if using diverter display
 const int CT5 = 0;       //  if not using LCD screen this is the  4th CT
-const int LCD = 1;             // 1=enable 0=disable
+const int LCD = 0;             // 1=enable 0=disable
 float element = 3000; //wattage of  element  for diversion -  make bigger  then then what you have to decrease  buuble search sensitivity
 const int SSR4 =1;          // 1=  4 ssr and disables static,  0=  3 SSR & 1 static ( disable PWM.h)
 const int ios = 3;          /// Number of SSR to control 4 MAX if PWM.h diasble otherwise 3
@@ -306,14 +306,14 @@ void settingPWM( int _PIN, int _PWM)
 
 void loop() 
 {
-  int _INPUT = pulseIn(digitalPin, HIGH, 4200);
-if (_INPUT == 0 && digitalRead(digitalPin) == 1) {
+  int _INPUT = pulseIn(digitalPin, LOW, 4200);
+if (_INPUT == 0 && digitalRead(digitalPin) == 0) {
     _INPUT = 1000;
 }
-if (_INPUT == 0 && digitalRead(digitalPin) == 0) {
+if (_INPUT == 0 && digitalRead(digitalPin) == 1) {
     _INPUT = 0;
 }
-_INPUT= map(_INPUT, 1000,0 , 255, 0);
+_INPUT= map(_INPUT, 0,1000 , 0, 255);
 
   if ( RD == 1){ if ( r1 >0) {digitalWrite( pulse4, HIGH);}else{ digitalWrite( pulse4, LOW);}}
  if (SEND <50) SEND++;  
@@ -548,16 +548,12 @@ if ( i == 0){
   analogWrite(pulse1, 0 );
          digitalWrite(relay1, LOW);digitalWrite(relay2, LOW);digitalWrite(relay3, LOW);digitalWrite(relay4, LOW);
          r1=0;
-    if (_INPUT >5 ) { analogWrite(pulse1, _INPUT ) ;}   
       /*  if (r1 ==1){ digitalWrite(relay1, LOW); r1=0; }
         if (r1==2){ digitalWrite(relay2, LOW); r1=1;}
         if (r1 ==3){ digitalWrite(relay3, LOW); r1=2;}
         if (r1 ==4){ digitalWrite(relay4, LOW); r1=3;} */
   }else{
-   
     settingPWM(pulse1, 0);
-    if (_INPUT >5 ) { settingPWM(pulse1, _INPUT ) ;}
-   
          digitalWrite(relay1, LOW);digitalWrite(relay2, LOW);digitalWrite(relay3, LOW);digitalWrite(relay4, LOW);
          r1=0;
       /*
