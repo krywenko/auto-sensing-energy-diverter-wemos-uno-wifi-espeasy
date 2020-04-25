@@ -548,12 +548,16 @@ if ( i == 0){
   analogWrite(pulse1, 0 );
          digitalWrite(relay1, LOW);digitalWrite(relay2, LOW);digitalWrite(relay3, LOW);digitalWrite(relay4, LOW);
          r1=0;
+    if (_INPUT >5 ) { analogWrite(pulse1, _INPUT ) ;}   
       /*  if (r1 ==1){ digitalWrite(relay1, LOW); r1=0; }
         if (r1==2){ digitalWrite(relay2, LOW); r1=1;}
         if (r1 ==3){ digitalWrite(relay3, LOW); r1=2;}
         if (r1 ==4){ digitalWrite(relay4, LOW); r1=3;} */
   }else{
+   
     settingPWM(pulse1, 0);
+    if (_INPUT >5 ) { settingPWM(pulse1, _INPUT ) ;}
+   
          digitalWrite(relay1, LOW);digitalWrite(relay2, LOW);digitalWrite(relay3, LOW);digitalWrite(relay4, LOW);
          r1=0;
       /*
