@@ -306,11 +306,11 @@ void settingPWM( int _PIN, int _PWM)
 
 void loop() 
 {
-  int _INPUT = pulseIn(digitalPin, LOW, 4200);
-if (_INPUT == 0 && digitalRead(digitalPin) == 0) {
+  int _INPUT = pulseIn(digitalPin, HIGH, 4200);
+if (_INPUT == 0 && digitalRead(digitalPin) == 1) {
     _INPUT = 1000;
 }
-if (_INPUT == 0 && digitalRead(digitalPin) == 1) {
+if (_INPUT == 0 && digitalRead(digitalPin) == 0) {
     _INPUT = 0;
 }
 _INPUT= map(_INPUT, 0,1000 , 0, 255);
