@@ -37,7 +37,8 @@ or
 
 https://community.openenergymonitor.org/t/cascading-diversion-with-espeasy-wemosr3-and-emontx-shield/13689/
 
-Update functionality:
+Update functionality:  Energy_DIVERTER__Cascading_SSRs2ABCDF.ino 
+
 Added more functionality to my energy monitor…
 
 manual control of SSR 1 output for scheduled purposes
