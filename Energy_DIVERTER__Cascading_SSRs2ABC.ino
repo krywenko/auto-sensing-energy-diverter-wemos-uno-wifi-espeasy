@@ -12,7 +12,7 @@ const int relay1=7;  //relay pins
 const int relay2=8;
 const int relay3=12;
 const int relay4=13; 
-const int DIS = 100 ; // what pwm pulse on the first SSR to be reached before disabling  relays 1-254
+const int DIS = 30 ; // what pwm pulse on the first SSR to be reached before disabling  relays 1-254
 const int RD =1 ;  // if using PWM.h and wish to display if relays are activated on LED 4  1= enable 0= disable
 
 int upperRANGE = 15; // the range in which it will not search for better output 
@@ -35,9 +35,9 @@ const int pulse1 = 9;
 const int pulse2 = 10;
 const int pulse3 = 3;
 const int pulse4 = 11;     //enable pulse 4 if you wish 4 cassacding ssr
-float DRIFT =1 ;      // if you wish to adust hz output 
+float DRIFT =1.015 ;      // if you wish to adust hz output 
 
-const int digitalPin = 6;  // digital input pin from esp  
+const int digitalPin = 6;  // digital input pin from esp  to control  override of ss1
 const int invstatus = 5;    // pin for led display  showing overproduction 
 const int type = 0;         // 0= casdading -  1 = equal for diverting 
 const int ssr=0;            // 0= zerocrossing 1 = phase angle  currently only supports one ssr 
@@ -237,7 +237,7 @@ unsigned long start = millis();
   period = (micros()-mark);
   DONE = true;
 
-  if (period < 10000){
+  if (period < 5000){
     if (count2 ==0){
     
      Serial.println("Check  AC adaptor");
@@ -308,12 +308,12 @@ void loop()
 {
   int _INPUT = pulseIn(digitalPin, HIGH, 4200);
 if (_INPUT == 0 && digitalRead(digitalPin) == 1) {
-    _INPUT = 1000;
+    _INPUT = 900;
 }
 if (_INPUT == 0 && digitalRead(digitalPin) == 0) {
     _INPUT = 0;
 }
-_INPUT= map(_INPUT, 0,1000 , 0, 255);
+_INPUT= map(_INPUT, 0,900 , 0, 255);
 
   if ( RD == 1){ if ( r1 >0) {digitalWrite( pulse4, HIGH);}else{ digitalWrite( pulse4, LOW);}}
  if (SEND <50) SEND++;  
