@@ -837,7 +837,7 @@ per = (1 - per);
   //// ##### if you wish to send data  
   if (settled)                                                            
   {     
-    Serial.print("TaskValueSet,2,4,"); Serial.println(_INPUTa);                                                                                                         
+    Serial.print("TaskValueSet,3,1,"); Serial.println(_INPUTa);                                                                                                         
   }
 
 }
