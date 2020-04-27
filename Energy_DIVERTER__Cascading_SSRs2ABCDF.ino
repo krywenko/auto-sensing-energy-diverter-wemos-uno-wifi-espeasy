@@ -326,19 +326,19 @@ void settingPWM( int _PIN, int _PWM)
 //###############
 
 void SWITCH(int Inp){
-  if (Inp > 340 && Inp < 370){Serial.println("switch1 auto"); sw1=3; EEPROM.update(address1, sw1 );}
+  if (Inp > 340 && Inp < 370){Serial.println("TaskValueSet,4,1,3"); sw1=3; EEPROM.update(address1, sw1 );}
   if (Inp > 310 && Inp < 340 ){Serial.println("TaskValueSet,4,1,0");digitalWrite(relay1, LOW); EEPROM.update(address1, 10 ); }
   if (Inp > 280 && Inp < 310 ){Serial.println("TaskValueSet,4,1,1");digitalWrite(relay1, HIGH); EEPROM.update(address1, 10 ); }
   
-  if (Inp > 250 && Inp < 280 ){ Serial.println("switch2 auto");sw2=3; EEPROM.update(address2, sw2 );}
+  if (Inp > 250 && Inp < 280 ){ Serial.println("TaskValueSet,4,2,3");sw2=3; EEPROM.update(address2, sw2 );}
   if (Inp > 220 && Inp < 250){Serial.println("TaskValueSet,4,2,0");digitalWrite(relay2, LOW);EEPROM.update(address2, 10 ); }
   if (Inp > 190 && Inp < 220 ){Serial.println("TaskValueSet,4,2,1");digitalWrite(relay2, HIGH);  EEPROM.update(address2, 10 ); }
   
-  if (Inp > 160 && Inp < 190 ){Serial.println("switch3 auto");sw3=3; EEPROM.update(address3, sw3 );}
+  if (Inp > 160 && Inp < 190 ){Serial.println("TaskValueSet,4,3,3");sw3=3; EEPROM.update(address3, sw3 );}
   if (Inp > 130 && Inp < 160 ){Serial.println("TaskValueSet,4,3,0");digitalWrite(relay3, LOW); EEPROM.update(address3, 10 );}
   if (Inp > 100 && Inp < 130 ){Serial.println("TaskValueSet,4,3,1");digitalWrite(relay3, HIGH); EEPROM.update(address3, 10 ); }
   
-  if (Inp > 70 && Inp < 100 ){Serial.println("switch4 auto"); sw4=3; EEPROM.update(address4, sw4 );}
+  if (Inp > 70 && Inp < 100 ){Serial.println("TaskValueSet,4,4,3"); sw4=3; EEPROM.update(address4, sw4 );}
   if (Inp > 40 && Inp < 70 ){Serial.println("TaskValueSet,4,4,0");digitalWrite(relay4, LOW); EEPROM.update(address4, 10 );}
   if (Inp > 10 && Inp < 40 ){Serial.println("TaskValueSet,4,4,1");digitalWrite(relay4, HIGH);EEPROM.update(address4, 10 );} 
   
