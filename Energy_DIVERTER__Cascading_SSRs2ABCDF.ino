@@ -712,7 +712,7 @@ if ( stat == 2){
   }
  TMP = (DIVERT+510);  percent = (TMP/DIVS);
   Serial.print("TaskValueSet,2,1,"); Serial.println(percent);
-if ( DIVERT <= uDIS){  
+if ( DIVERT >= uDIS){  
   if ( count3 >= AVG){
  if (sw1 ==3){ if (r1 ==3){ digitalWrite(relay4, HIGH); r1=4;}}
  if (sw2 ==3){ if (r1 ==2){ digitalWrite(relay3, HIGH); r1=3;}}
