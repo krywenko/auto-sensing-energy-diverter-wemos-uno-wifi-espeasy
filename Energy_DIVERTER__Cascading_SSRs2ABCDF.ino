@@ -17,6 +17,7 @@ const int relay1=7;  //relay pins
 const int relay2=8;
 const int relay3=12;
 const int relay4=13; 
+const int uDIS = 100 ;
 const int DIS = 100 ; // what pwm pulse on the first SSR to be reached before disabling  relays 1-254
 const int RD =1 ;  // if using PWM.h and wish to display if relays are activated on LED 4  1= enable 0= disable
 
@@ -711,12 +712,13 @@ if ( stat == 2){
   }
  TMP = (DIVERT+510);  percent = (TMP/DIVS);
   Serial.print("TaskValueSet,2,1,"); Serial.println(percent);
-  
+if ( DIVERT <= uDIS){  
   if ( count3 >= AVG){
  if (sw1 ==3){ if (r1 ==3){ digitalWrite(relay4, HIGH); r1=4;}}
  if (sw2 ==3){ if (r1 ==2){ digitalWrite(relay3, HIGH); r1=3;}}
  if (sw3 ==3){ if (r1==1){ digitalWrite(relay2, HIGH); r1=2; }}
  if (sw4 ==3){ if (r1 ==0){ digitalWrite(relay1, HIGH); r1=1;}}
+  }
    //avg_ios=avg_ios+percent;
  // if ( count3 >= AVG){
  // avg_ios= avg_ios/AVG;
@@ -837,7 +839,12 @@ per = (1 - per);
   //// ##### if you wish to send data  
   if (settled)                                                            
   {     
-    Serial.print("TaskValueSet,3,1,"); Serial.println(_INPUTa);                                                                                                         
+    Serial.print("TaskValueSet,3,1,"); Serial.println(_INPUTa);  
+    if (sw1 ==3) {Serial.println("TaskValueSet,4,1,3");} 
+    if (sw2 ==3) {Serial.println("TaskValueSet,4,2,3");} 
+    if (sw3 ==3) {Serial.println("TaskValueSet,4,3,3");} 
+    if (sw4 ==3) {Serial.println("TaskValueSet,4,4,3");}
+                                                                                                         
   }
 
 }
