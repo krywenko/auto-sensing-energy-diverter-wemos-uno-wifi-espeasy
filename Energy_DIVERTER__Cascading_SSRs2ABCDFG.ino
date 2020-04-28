@@ -670,10 +670,10 @@ if ( stat == 0){
 if (ios ==1){  
 if ( DIVERT >= uDIS){  
   if ( count3 >= AVG){
- if (sw1 ==3){ if (r1 ==3){ digitalWrite(relay4, HIGH); r1=4;}}
- if (sw2 ==3){ if (r1 ==2){ digitalWrite(relay3, HIGH); r1=3;}}
- if (sw3 ==3){ if (r1==1){ digitalWrite(relay2, HIGH); r1=2; }}
- if (sw4 ==3){ if (r1 ==0){ digitalWrite(relay1, HIGH); r1=1;}}
+ if (sw4 ==3){ if (r1 ==3){ digitalWrite(relay4, HIGH); r1=4;}}
+ if (sw3 ==3){ if (r1 ==2){ digitalWrite(relay3, HIGH); r1=3;}}
+ if (sw2 ==3){ if (r1==1){ digitalWrite(relay2, HIGH); r1=2; }}
+ if (sw1 ==3){ if (r1 ==0){ digitalWrite(relay1, HIGH); r1=1;}}
   }}}
   }
   percent = ((DIVERT)/DIVS);
@@ -689,10 +689,10 @@ if ( DIVERT <= DIS){
 if (ios ==1){  
 if ( DIVERT >= uDIS){  
   if ( count3 >= AVG){
- if (sw1 ==3){ if (r1 ==3){ digitalWrite(relay4, HIGH); r1=4;}}
- if (sw2 ==3){ if (r1 ==2){ digitalWrite(relay3, HIGH); r1=3;}}
- if (sw3 ==3){ if (r1==1){ digitalWrite(relay2, HIGH); r1=2; }}
- if (sw4 ==3){ if (r1 ==0){ digitalWrite(relay1, HIGH); r1=1;}}
+ if (sw4 ==3){ if (r1 ==3){ digitalWrite(relay4, HIGH); r1=4;}}
+ if (sw3 ==3){ if (r1 ==2){ digitalWrite(relay3, HIGH); r1=3;}}
+ if (sw2 ==3){ if (r1==1){ digitalWrite(relay2, HIGH); r1=2; }}
+ if (sw1 ==3){ if (r1 ==0){ digitalWrite(relay1, HIGH); r1=1;}}
   }}}
   
   //avg_ios=avg_ios+percent;
@@ -712,10 +712,10 @@ if ( stat == 1){
 if (ios ==2){  
 if ( DIVERT >= uDIS){  
   if ( count3 >= AVG){
- if (sw1 ==3){ if (r1 ==3){ digitalWrite(relay4, HIGH); r1=4;}}
- if (sw2 ==3){ if (r1 ==2){ digitalWrite(relay3, HIGH); r1=3;}}
- if (sw3 ==3){ if (r1==1){ digitalWrite(relay2, HIGH); r1=2; }}
- if (sw4 ==3){ if (r1 ==0){ digitalWrite(relay1, HIGH); r1=1;}}
+ if (sw4 ==3){ if (r1 ==3){ digitalWrite(relay4, HIGH); r1=4;}}
+ if (sw3 ==3){ if (r1 ==2){ digitalWrite(relay3, HIGH); r1=3;}}
+ if (sw2 ==3){ if (r1==1){ digitalWrite(relay2, HIGH); r1=2; }}
+ if (sw1 ==3){ if (r1 ==0){ digitalWrite(relay1, HIGH); r1=1;}}
   }}}
   
   }else{
@@ -724,10 +724,10 @@ if ( DIVERT >= uDIS){
 if (ios ==2){  
 if ( DIVERT >= uDIS){  
   if ( count3 >= AVG){
- if (sw1 ==3){ if (r1 ==3){ digitalWrite(relay4, HIGH); r1=4;}}
- if (sw2 ==3){ if (r1 ==2){ digitalWrite(relay3, HIGH); r1=3;}}
- if (sw3 ==3){ if (r1==1){ digitalWrite(relay2, HIGH); r1=2; }}
- if (sw4 ==3){ if (r1 ==0){ digitalWrite(relay1, HIGH); r1=1;}}
+ if (sw4 ==3){ if (r1 ==3){ digitalWrite(relay4, HIGH); r1=4;}}
+ if (sw3 ==3){ if (r1 ==2){ digitalWrite(relay3, HIGH); r1=3;}}
+ if (sw2 ==3){ if (r1==1){ digitalWrite(relay2, HIGH); r1=2; }}
+ if (sw1 ==3){ if (r1 ==0){ digitalWrite(relay1, HIGH); r1=1;}}
   }}}
   
   analogWrite(pulse3, 0 );
@@ -757,10 +757,10 @@ if ( stat == 2){
 if (ios ==3){  
 if ( DIVERT >= uDIS){  
   if ( count3 >= AVG){
- if (sw1 ==3){ if (r1 ==3){ digitalWrite(relay4, HIGH); r1=4;}}
- if (sw2 ==3){ if (r1 ==2){ digitalWrite(relay3, HIGH); r1=3;}}
- if (sw3 ==3){ if (r1==1){ digitalWrite(relay2, HIGH); r1=2; }}
- if (sw4 ==3){ if (r1 ==0){ digitalWrite(relay1, HIGH); r1=1;}}
+ if (sw4 ==3){ if (r1 ==3){ digitalWrite(relay4, HIGH); r1=4;}}
+ if (sw3 ==3){ if (r1 ==2){ digitalWrite(relay3, HIGH); r1=3;}}
+ if (sw2 ==3){ if (r1==1){ digitalWrite(relay2, HIGH); r1=2; }}
+ if (sw1 ==3){ if (r1 ==0){ digitalWrite(relay1, HIGH); r1=1;}}
   }}
    //avg_ios=avg_ios+percent;
  // if ( count3 >= AVG){
