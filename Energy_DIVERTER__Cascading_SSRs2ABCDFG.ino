@@ -658,7 +658,23 @@ if ( stat == 0){
  }
   analogWrite(pulse3, 0 );
   if (SSR4 == 1){
-  analogWrite(pulse4, 0 );                  //enable for 4th ssr
+  analogWrite(pulse4, 0 ); //enable for 4th ssr
+  if ( DIVERT <= DIS){
+  if ( count3 >= AVG){
+  if (sw1 ==3){ if (r1 ==1){ digitalWrite(relay1, LOW); r1=0;} } 
+  if (sw2 ==3){ if (r1==2){ digitalWrite(relay2, LOW); r1=1;}}
+  if (sw3 ==3){ if (r1 ==3){ digitalWrite(relay3, LOW); r1=2;}}
+  if (sw4 ==3){ if (r1 ==4){ digitalWrite(relay4, LOW); r1=3;}}
+  }
+}
+if (ios ==1){  
+if ( DIVERT >= uDIS){  
+  if ( count3 >= AVG){
+ if (sw1 ==3){ if (r1 ==3){ digitalWrite(relay4, HIGH); r1=4;}}
+ if (sw2 ==3){ if (r1 ==2){ digitalWrite(relay3, HIGH); r1=3;}}
+ if (sw3 ==3){ if (r1==1){ digitalWrite(relay2, HIGH); r1=2; }}
+ if (sw4 ==3){ if (r1 ==0){ digitalWrite(relay1, HIGH); r1=1;}}
+  }}}
   }
   percent = ((DIVERT)/DIVS);
   Serial.print("TaskValueSet,2,1,"); Serial.println(percent);
@@ -670,6 +686,14 @@ if ( DIVERT <= DIS){
   if (sw4 ==3){ if (r1 ==4){ digitalWrite(relay4, LOW); r1=3;}}
   }
 }
+if (ios ==1){  
+if ( DIVERT >= uDIS){  
+  if ( count3 >= AVG){
+ if (sw1 ==3){ if (r1 ==3){ digitalWrite(relay4, HIGH); r1=4;}}
+ if (sw2 ==3){ if (r1 ==2){ digitalWrite(relay3, HIGH); r1=3;}}
+ if (sw3 ==3){ if (r1==1){ digitalWrite(relay2, HIGH); r1=2; }}
+ if (sw4 ==3){ if (r1 ==0){ digitalWrite(relay1, HIGH); r1=1;}}
+  }}}
   
   //avg_ios=avg_ios+percent;
   //if ( count3 >= AVG){
@@ -685,9 +709,27 @@ if ( stat == 1){
    delayMicroseconds(period/2);
   if (PWM == 0){
   analogWrite(pulse2, DIVERT );
+if (ios ==2){  
+if ( DIVERT >= uDIS){  
+  if ( count3 >= AVG){
+ if (sw1 ==3){ if (r1 ==3){ digitalWrite(relay4, HIGH); r1=4;}}
+ if (sw2 ==3){ if (r1 ==2){ digitalWrite(relay3, HIGH); r1=3;}}
+ if (sw3 ==3){ if (r1==1){ digitalWrite(relay2, HIGH); r1=2; }}
+ if (sw4 ==3){ if (r1 ==0){ digitalWrite(relay1, HIGH); r1=1;}}
+  }}}
+  
   }else{
    settingPWM(pulse2, DIVERT); 
   }
+if (ios ==2){  
+if ( DIVERT >= uDIS){  
+  if ( count3 >= AVG){
+ if (sw1 ==3){ if (r1 ==3){ digitalWrite(relay4, HIGH); r1=4;}}
+ if (sw2 ==3){ if (r1 ==2){ digitalWrite(relay3, HIGH); r1=3;}}
+ if (sw3 ==3){ if (r1==1){ digitalWrite(relay2, HIGH); r1=2; }}
+ if (sw4 ==3){ if (r1 ==0){ digitalWrite(relay1, HIGH); r1=1;}}
+  }}}
+  
   analogWrite(pulse3, 0 );
   if (SSR4 == 1){
   analogWrite(pulse4, 0 );  //enable for 4th ssr
@@ -712,13 +754,14 @@ if ( stat == 2){
   }
  TMP = (DIVERT+510);  percent = (TMP/DIVS);
   Serial.print("TaskValueSet,2,1,"); Serial.println(percent);
+if (ios ==3){  
 if ( DIVERT >= uDIS){  
   if ( count3 >= AVG){
  if (sw1 ==3){ if (r1 ==3){ digitalWrite(relay4, HIGH); r1=4;}}
  if (sw2 ==3){ if (r1 ==2){ digitalWrite(relay3, HIGH); r1=3;}}
  if (sw3 ==3){ if (r1==1){ digitalWrite(relay2, HIGH); r1=2; }}
  if (sw4 ==3){ if (r1 ==0){ digitalWrite(relay1, HIGH); r1=1;}}
-  }
+  }}
    //avg_ios=avg_ios+percent;
  // if ( count3 >= AVG){
  // avg_ios= avg_ios/AVG;
