@@ -600,10 +600,10 @@ if ( i == 3){                   //enable for 4th ssr
 if ( i == 0){
   if (PWM ==0 ){
   analogWrite(pulse1, 0 );
-   if (sw1 ==3){ digitalWrite(relay1, LOW);}
-   if (sw2 ==3){digitalWrite(relay2, LOW);}
-   if (sw3 ==3){digitalWrite(relay3, LOW);}
-   if (sw4 ==3){digitalWrite(relay4, LOW);}
+   if (sw1 ==3){ digitalWrite(relay1, LOW);Serial.println("TaskValueSet,4,1,0");}
+   if (sw2 ==3){digitalWrite(relay2, LOW);Serial.println("TaskValueSet,4,2,0");}
+   if (sw3 ==3){digitalWrite(relay3, LOW);Serial.println("TaskValueSet,4,3,0");}
+   if (sw4 ==3){digitalWrite(relay4, LOW);Serial.println("TaskValueSet,4,4,0");}
          r1=0;
       /*  if (r1 ==1){ digitalWrite(relay1, LOW); r1=0; }
         if (r1==2){ digitalWrite(relay2, LOW); r1=1;}
@@ -612,10 +612,10 @@ if ( i == 0){
   }else{
     settingPWM(pulse1, 0);
         // digitalWrite(relay1, LOW);digitalWrite(relay2, LOW);digitalWrite(relay3, LOW);digitalWrite(relay4, LOW);
-    if (sw1 ==3){ digitalWrite(relay1, LOW);}
-   if (sw2 ==3){digitalWrite(relay2, LOW);}
-   if (sw3 ==3){digitalWrite(relay3, LOW);}
-   if (sw4 ==3){digitalWrite(relay4, LOW);}
+    if (sw1 ==3){ digitalWrite(relay1, LOW);Serial.println("TaskValueSet,4,1,0");}
+   if (sw2 ==3){digitalWrite(relay2, LOW);Serial.println("TaskValueSet,4,2,0");}
+   if (sw3 ==3){digitalWrite(relay3, LOW);Serial.println("TaskValueSet,4,3,0");}
+   if (sw4 ==3){digitalWrite(relay4, LOW);Serial.println("TaskValueSet,4,4,0");}
          r1=0;
       /*
        if (r1 ==1){ digitalWrite(relay1, LOW); r1=0; }
@@ -661,10 +661,10 @@ if ( stat == 0){
   analogWrite(pulse4, 0 ); //enable for 4th ssr
   if ( DIVERT <= DIS){
   if ( count3 >= AVG){
-  if (sw1 ==3){ if (r1 ==1){ digitalWrite(relay1, LOW); r1=0;} } 
-  if (sw2 ==3){ if (r1==2){ digitalWrite(relay2, LOW); r1=1;}}
-  if (sw3 ==3){ if (r1 ==3){ digitalWrite(relay3, LOW); r1=2;}}
-  if (sw4 ==3){ if (r1 ==4){ digitalWrite(relay4, LOW); r1=3;}}
+  if (sw1 ==3){ if (r1 ==1){ digitalWrite(relay1, LOW); r1=0;Serial.println("TaskValueSet,4,1,0");} } 
+  if (sw2 ==3){ if (r1==2){ digitalWrite(relay2, LOW); r1=1;Serial.println("TaskValueSet,4,2,0");}}
+  if (sw3 ==3){ if (r1 ==3){ digitalWrite(relay3, LOW); r1=2;Serial.println("TaskValueSet,4,3,0");}}
+  if (sw4 ==3){ if (r1 ==4){ digitalWrite(relay4, LOW); r1=3;Serial.println("TaskValueSet,4,4,0");}}
   }
 }
 if (ios ==1){  
